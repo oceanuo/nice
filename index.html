@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Scanner</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+        .status {
+            margin-bottom: 20px;
+        }
+        .progress-container {
+            background: #333;
+            border-radius: 5px;
+            padding: 3px;
+            margin: 20px 0;
+        }
+        .progress-bar {
+            background: #00ff00;
+            height: 20px;
+            width: 0%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+        .log {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 5px;
+            height: 200px;
+            overflow-y: auto;
+        }
+        .log p {
+            margin: 5px 0;
+            line-height: 1.4;
+        }
+        .blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="status">
+            <h2>系统扫描进行中... <span class="blink">_</span></h2>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="log" id="log"></div>
+    </div>
+    <script>
+        const progressBar = document.getElementById('progressBar');
+        const log = document.getElementById('log');
+        
+        function addLog(message) {
+            const p = document.createElement('p');
+            p.textContent = message;
+            log.appendChild(p);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function updateProgress(percent) {
+            progressBar.style.width = percent + '%';
+        }
+
+        // Start the sequence
+        setTimeout(() => addLog('初始化系统扫描...'), 1000);
+        setTimeout(() => addLog('正在连接社交媒体数据库...'), 3000);
+        setTimeout(() => addLog('定位 Instagram 账户...'), 5000);
+        setTimeout(() => addLog('正在分析用户数据...'), 8000);
+        setTimeout(() => addLog('开始破解加密...'), 10000);
+        setTimeout(() => addLog('正在应用解密算法...'), 13000);
+        setTimeout(() => addLog('破解进度: 50%'), 15000);
+        setTimeout(() => addLog('破解进度: 75%'), 17000);
+        setTimeout(() => {
+            addLog('破解成功！');
+            addLog('已获取访问权限.');
+        }, 20000);
+
+        // Update progress bar
+        let progress = 0;
+        const interval = setInterval(() => {
+            if (progress < 100) {
+                progress += 1;
+                updateProgress(progress);
+            } else {
+                clearInterval(interval);
+            }
+        }, 200);
+    </script>
+</body>
+</html> 
